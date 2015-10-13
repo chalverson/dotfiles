@@ -64,8 +64,8 @@ function removeFromPath() {
 
 
 if [ `uname -s` = 'Darwin' ]; then
-    POSTGRES_VERSION='94'
-    export PGPORT=5${POSTGRES_VERSION}0
+  POSTGRES_VERSION='94'
+  export PGPORT=5${POSTGRES_VERSION}0
   #export JAVA_HOME=$(/usr/libexec/java_home)
   setjdk 1.7
   export http_proxy=http://216.70.33.26:3128

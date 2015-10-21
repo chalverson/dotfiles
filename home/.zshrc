@@ -71,15 +71,18 @@ if [ `uname -s` = 'Darwin' ]; then
   export http_proxy=http://216.70.33.26:3128
   # Mac specific paths
   PATH=/opt/local/bin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$HOME/tmp/powerline/scripts:$PATH
-  plugins=(git git-flow nmap mvn osx vagrant macports tmux)
+  plugins=(git git-flow nmap mvn osx vagrant macports tmux python pyenv gradle rsync httpie docker)
   alias ls='ls -sCFG'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'
   alias postgres_stop='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper stop'
   # For httpie
   export NO_PROXY=localhost,enventis.com,singlelink.com,inficonn.net,hickorytech.local,216.70.33.40,ddc.local,10.63.210.13,consolidated.com,10.63.63.11
 else
-  export JAVA_HOME=/usr/lib/jvm/jre
-  plugins=(git mvn vagrant)
+    if [ -d /usr/lib/jvm/jre ]; then
+        export JAVA_HOME=/usr/lib/jvm/jre
+    fi
+
+  plugins=(git mvn vagrant gradle rsync)
   alias ls='ls -sCF --color=auto'
 fi
 

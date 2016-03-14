@@ -7,13 +7,12 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
-# Just "gianu" with a different prompt so I know if I'm root
-#ZSH_THEME="cdh"
 # Using powerline theme from https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme
-#ZSH_THEME="agnoster"
 ZSH_THEME="powerline"
 POWERLINE_HIDE_HOST_NAME="true"
 POWERLINE_DETECT_SSH="true"
+POWERLINE_RIGHT_A="exit-status-on-fail"
+POWERLINE_PATH="short"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -70,13 +69,14 @@ if [ `uname -s` = 'Darwin' ]; then
   setjdk 1.7
   export http_proxy=http://216.70.33.26:3128
   # Mac specific paths
-  PATH=/opt/local/bin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:$HOME/tmp/powerline/scripts:$PATH
-  plugins=(git git-flow nmap mvn osx vagrant macports tmux python pyenv gradle rsync httpie docker virtualenv)
+  PATH=/opt/local/bin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$HOME/tmp/powerline/scripts:$PATH
+  #plugins=(git git-flow nmap mvn osx vagrant macports tmux python pyenv gradle rsync httpie docker virtualenv)
+  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie)
   alias ls='ls -sCFG'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'
   alias postgres_stop='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper stop'
   # For httpie
-  export NO_PROXY=localhost,enventis.com,singlelink.com,inficonn.net,hickorytech.local,216.70.33.40,ddc.local,10.63.210.13,consolidated.com,10.63.63.11
+  export NO_PROXY=localhost,enventis.com,singlelink.com,inficonn.net,hickorytech.local,216.70.33.40,ddc.local,10.63.210.13,consolidated.com,10.63.63.11,10.63.210.16,10.63.208.2
 else
     if [ -d /usr/lib/jvm/jre ]; then
         export JAVA_HOME=/usr/lib/jvm/jre

@@ -7,12 +7,17 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 #ZSH_THEME="robbyrussell"
+#ZSH_THEME="gianu"
+ZSH_THEME="michelebologna"
 # Using powerline theme from https://github.com/jeremyFreeAgent/oh-my-zsh-powerline-theme
-ZSH_THEME="powerline"
-POWERLINE_HIDE_HOST_NAME="true"
-POWERLINE_DETECT_SSH="true"
-POWERLINE_RIGHT_A="exit-status-on-fail"
-POWERLINE_PATH="short"
+#ZSH_THEME="powerline"
+#POWERLINE_HIDE_HOST_NAME="true"
+#POWERLINE_DETECT_SSH="true"
+#POWERLINE_RIGHT_A="exit-status-on-fail"
+#POWERLINE_PATH="short"
+
+setopt auto_cd
+cdpath=($HOME $HOME/projects)
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -42,7 +47,12 @@ POWERLINE_PATH="short"
 
 # Customize to your needs...
 
-PATH=$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin
+# OSX
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+
+PATH=$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin
 
 # Set the JVM, http://www.jayway.com/2014/01/15/how-to-switch-jdk-version-on-mac-os-x-maverick/
 #
@@ -63,26 +73,35 @@ function removeFromPath() {
 
 
 if [ `uname -s` = 'Darwin' ]; then
-  POSTGRES_VERSION='94'
-  export PGPORT=5${POSTGRES_VERSION}0
-  #export JAVA_HOME=$(/usr/libexec/java_home)
+  export LC_ALL=en_US.UTF-8
+  POSTGRES_VERSION='10'
+  export PGPORT=54${POSTGRES_VERSION}0
   setjdk 1.8
-  export http_proxy=http://216.70.33.26:3128
+  #export http_proxy=http://216.70.33.26:3128
+  export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.7'
+  export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.7'
+  export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.7'
+  source /opt/local/bin/virtualenvwrapper.sh-3.7
+  #export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.7'
+  #export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.7'
+  #export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.7'
+  #export WORKON_HOME=$HOME/.virtualenvs
+  # source /opt/local/bin/virtualenvwrapper.sh-3.6
   # Mac specific paths
-  PATH=/opt/local/bin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$HOME/tmp/powerline/scripts:$PATH
+  #PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$HOME/tmp/powerline/scripts:$PATH
+  PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
   #plugins=(git git-flow nmap mvn osx vagrant macports tmux python pyenv gradle rsync httpie docker virtualenv)
-  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie)
-  alias ls='ls -sCFG'
+  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle)
+  alias ls='ls -sCFG --color=auto'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'
   alias postgres_stop='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper stop'
   # For httpie
-  export NO_PROXY=localhost,enventis.com,singlelink.com,inficonn.net,hickorytech.local,216.70.33.40,ddc.local,10.63.210.13,consolidated.com,10.63.63.11,10.63.210.16,10.63.208.2
+  export NO_PROXY=localhost,enventis.com,singlelink.com,inficonn.net,hickorytech.local,216.70.33.40,ddc.local,10.63.210.13,consolidated.com,enventis.com,10.63.63.11,10.63.210.16,10.63.208.2,127.0.0.1,pfm
 else
     if [ -d /usr/lib/jvm/jre ]; then
         export JAVA_HOME=/usr/lib/jvm/jre
     fi
 
-  plugins=(git mvn vagrant gradle rsync)
   alias ls='ls -sCF --color=auto'
 fi
 
@@ -90,9 +109,10 @@ export PATH
 
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
-source $ZSH/oh-my-zsh.sh
+[[ -s $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
-#export PATH=/Users/cdh/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/local/ant/bin:/bin:/Applications/griffon-0.9.5/bin:/usr/share/grails/bin:/Users/cdh/bin/maven/bin:/usr/share/gradle/bin:/opt/local/bin:/usr/local/git/bin:/Applications/Xcode.app/Contents/Developer/usr/bin
+#. $HOME/powerline/powerline/bindings/zsh/powerline.zsh
+#[[ -s $HOME/powerline-tmp/powerline/powerline/bindings/zsh/powerline.zsh ]] && . $HOME/powerline-tmp/powerline/powerline/bindings/zsh/powerline.zsh
 
 alias rmall='/bin/rm -rf'
 alias f1='fg %1'
@@ -104,13 +124,12 @@ alias md='mkdir'
 alias rd='rmdir'
 alias ssh='ssh -C'
 alias j='jobs'
-alias ls='ls -sCFG'
+alias ls='ls -sCFG --color=auto'
 alias rscreen='screen -DR'
 cpv() {
     pv "$1" > "$2"
 }
 
-#. ~/tmp/powerline/powerline/bindings/zsh/powerline.zsh
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "/Users/cdh/.sdkman/bin/sdkman-init.sh" && -z $(which sdkman-init.sh | grep '/sdkman-init.sh') ]] && source "/Users/cdh/.sdkman/bin/sdkman-init.sh"

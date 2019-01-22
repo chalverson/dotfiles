@@ -39,7 +39,7 @@ cdpath=($HOME $HOME/projects)
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -110,9 +110,6 @@ export PATH
 source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 [[ -s $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
-
-#. $HOME/powerline/powerline/bindings/zsh/powerline.zsh
-#[[ -s $HOME/powerline-tmp/powerline/powerline/bindings/zsh/powerline.zsh ]] && . $HOME/powerline-tmp/powerline/powerline/bindings/zsh/powerline.zsh
 
 alias rmall='/bin/rm -rf'
 alias f1='fg %1'

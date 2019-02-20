@@ -52,7 +52,7 @@ if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper -s`
 fi
 
-PATH=$PATH:$HOME/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin
+PATH=$PATH:${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin
 
 # Set the JVM, http://www.jayway.com/2014/01/15/how-to-switch-jdk-version-on-mac-os-x-maverick/
 #
@@ -101,8 +101,7 @@ else
     if [ -d /usr/lib/jvm/jre ]; then
         export JAVA_HOME=/usr/lib/jvm/jre
     fi
-
-  alias ls='ls -sCF --color=auto'
+  plugins=(git mvn httpid golang tmux python)
 fi
 
 export PATH
@@ -127,6 +126,5 @@ cpv() {
     pv "$1" > "$2"
 }
 
-
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "/Users/cdh/.sdkman/bin/sdkman-init.sh" && -z $(which sdkman-init.sh | grep '/sdkman-init.sh') ]] && source "/Users/cdh/.sdkman/bin/sdkman-init.sh"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" && -z $(which sdkman-init.sh | grep '/sdkman-init.sh') ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"

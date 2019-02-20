@@ -4,8 +4,8 @@ filetype plugin indent on " filetype detection[ON] plugin[ON] indent[ON]
 set t_Co=256              " enable 256-color mode.
 syntax enable             " enable syntax highlighting (previously syntax on).
 colorscheme desert        " set colorscheme
-set number                " show line numbers
-set relativenumber        " show relative line numbers
+"set number                " show line numbers
+"set relativenumber        " show relative line numbers
 set laststatus=2          " last window always has a statusline
 set noshowmode
 filetype indent on        " activates indenting for files

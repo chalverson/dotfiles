@@ -13,7 +13,7 @@ script:
 git clone git://github.com/andsens/homeshick.git $HOME/.homesick/repos/homeshick
 source $HOME/.homesick/repos/homeshick/homeshick.sh
 
-GIT_SSL_NO_VERIFY=true homeshick --batch clone http://svrvmw-lfkntxxa-monit.ipnms.net/chalverson/dotfiles.git
+homeshick --batch clone https://github.com/chalverson/dotfiles.git
 
 ### Clone public repos ###
 homeshick clone --batch robbyrussell/oh-my-zsh

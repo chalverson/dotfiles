@@ -101,7 +101,7 @@ else
     if [ -d /usr/lib/jvm/jre ]; then
         export JAVA_HOME=/usr/lib/jvm/jre
     fi
-  plugins=(git mvn httpid golang tmux python)
+  plugins=(git mvn httpie golang tmux python)
 fi
 
 export PATH

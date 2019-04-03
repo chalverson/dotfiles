@@ -106,8 +106,8 @@ fi
 
 export PATH
 
-source "$HOME/.homesick/repos/homeshick/homeshick.sh"
-fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+[[ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]] && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
+[[ -s $HOME/.homesick/repos/homeshick/completions ]] && fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
 [[ -s $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 alias rmall='/bin/rm -rf'

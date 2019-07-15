@@ -47,11 +47,6 @@ COMPLETION_WAITING_DOTS="true"
 
 # Customize to your needs...
 
-# OSX
-if [ -x /usr/libexec/path_helper ]; then
-    eval `/usr/libexec/path_helper -s`
-fi
-
 PATH=$PATH:${HOME}/bin:${HOME}/.local/bin:${HOME}/go/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/bin
 
 # Set the JVM, http://www.jayway.com/2014/01/15/how-to-switch-jdk-version-on-mac-os-x-maverick/
@@ -71,8 +66,11 @@ function removeFromPath() {
   export PATH=$(echo $PATH | sed -E -e "s;:$1;;" -e "s;$1:?;;")  
 } 
 
-
 if [ `uname -s` = 'Darwin' ]; then
+  if [ -x /usr/libexec/path_helper ]; then
+      eval `/usr/libexec/path_helper -s`
+  fi
+
   export LC_ALL=en_US.UTF-8
   POSTGRES_VERSION='10'
   export PGPORT=54${POSTGRES_VERSION}0
@@ -82,15 +80,9 @@ if [ `uname -s` = 'Darwin' ]; then
   export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.7'
   export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.7'
   source /opt/local/bin/virtualenvwrapper.sh-3.7
-  #export VIRTUALENVWRAPPER_PYTHON='/opt/local/bin/python3.7'
-  #export VIRTUALENVWRAPPER_VIRTUALENV='/opt/local/bin/virtualenv-3.7'
-  #export VIRTUALENVWRAPPER_VIRTUALENV_CLONE='/opt/local/bin/virtualenv-clone-3.7'
-  #export WORKON_HOME=$HOME/.virtualenvs
-  # source /opt/local/bin/virtualenvwrapper.sh-3.6
+  export WORKON_HOME=$HOME/.virtualenvs
   # Mac specific paths
-  #PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$HOME/tmp/powerline/scripts:$PATH
-  PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
-  #plugins=(git git-flow nmap mvn osx vagrant macports tmux python pyenv gradle rsync httpie docker virtualenv)
+  PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/dev/flutter/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
   plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle)
   alias ls='ls -sCFG --color=auto'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'
@@ -108,6 +100,7 @@ export PATH
 
 [[ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]] && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 [[ -s $HOME/.homesick/repos/homeshick/completions ]] && fpath=($HOME/.homesick/repos/homeshick/completions $fpath)
+[[ -s $HOME/.completions ]] && fpath=($HOME/.completions $fpath)
 [[ -s $ZSH/oh-my-zsh.sh ]] && source $ZSH/oh-my-zsh.sh
 
 alias rmall='/bin/rm -rf'

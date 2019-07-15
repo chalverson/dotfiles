@@ -1,0 +1,135 @@
+#compdef _ccimule ccimule
+
+function _ccimule {
+  local -a commands
+
+  _arguments -C \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:' \
+    '--zsh[Generate ZSH completions]' \
+    "1: :->cmnds" \
+    "*::arg:->args"
+
+  case $state in
+  cmnds)
+    commands=(
+      "build:Build and publish a project"
+      "checkappstatus:Check the running status of an app"
+      "checkprodchecksums:Verify the produciton apps checksums"
+      "completion:Generate bash or zsh completions"
+      "deploy:Deploy a jar to the desired environment"
+      "gitchanged:Output list of projects that have been updated"
+      "help:Help about any command"
+    )
+    _describe "command" commands
+    ;;
+  esac
+
+  case "$words[1]" in
+  build)
+    _ccimule_build
+    ;;
+  checkappstatus)
+    _ccimule_checkappstatus
+    ;;
+  checkprodchecksums)
+    _ccimule_checkprodchecksums
+    ;;
+  completion)
+    _ccimule_completion
+    ;;
+  deploy)
+    _ccimule_deploy
+    ;;
+  gitchanged)
+    _ccimule_gitchanged
+    ;;
+  help)
+    _ccimule_help
+    ;;
+  esac
+}
+
+function _ccimule_build {
+  _arguments \
+    '--deploy[Also deploy the artifact]' \
+    '--notag[Do not tag the develop branch]' \
+    '--publish[Publish to Artifactory]' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+
+function _ccimule_checkappstatus {
+  _arguments \
+    '--appid[App ID to check]:' \
+    '--appname[App name to check]:' \
+    '(-w --wait)'{-w,--wait}'[Wait until app goes not RUNNING]' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+
+function _ccimule_checkprodchecksums {
+  _arguments \
+    '(-v --verbose)'{-v,--verbose}'[Output the checks]' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+
+function _ccimule_completion {
+  _arguments \
+    '--bash[Generate completions for bash]' \
+    '(-h --help)'{-h,--help}'[help for completion]' \
+    '--zsh[Generate completions for zsh]' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+
+function _ccimule_deploy {
+  _arguments \
+    '(-a --artifact)'{-a,--artifact}'[Path to artifact to deploy]:' \
+    '(-q --quiet)'{-q,--quiet}'[Suppress output]' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+
+function _ccimule_gitchanged {
+  _arguments \
+    '--all[Check all projects, not just CUI ones]' \
+    '--branch[Git branch to check]:' \
+    '--duration[Duration to check for updates]:' \
+    '--show[Also show date and committer]' \
+    '--since[Date to check from for updates in YYYY-MM-DD format]:' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+
+function _ccimule_help {
+  _arguments \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
+}
+

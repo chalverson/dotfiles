@@ -1,5 +1,6 @@
 #compdef _ccimule ccimule
 
+
 function _ccimule {
   local -a commands
 
@@ -16,6 +17,7 @@ function _ccimule {
   case $state in
   cmnds)
     commands=(
+      "audit:Run login audit report"
       "build:Build and publish a project"
       "checkappstatus:Check the running status of an app"
       "checkprodchecksums:Verify the produciton apps checksums"
@@ -29,6 +31,9 @@ function _ccimule {
   esac
 
   case "$words[1]" in
+  audit)
+    _ccimule_audit
+    ;;
   build)
     _ccimule_build
     ;;
@@ -51,6 +56,18 @@ function _ccimule {
     _ccimule_help
     ;;
   esac
+}
+
+function _ccimule_audit {
+  _arguments \
+    '--endDate[End date (optional)]:' \
+    '--startDate[Start date]:' \
+    '--summary[Summary only, otherwise will print out CSV report]' \
+    '--anypointenv[Anypoint environment]:' \
+    '--anypointorg[Anypoint org]:' \
+    '--anypointpassword[Anypoint password]:' \
+    '--anypointuser[Anypoint username]:' \
+    '--config[config file (default is $HOME/.ccimule.yaml)]:'
 }
 
 function _ccimule_build {

@@ -83,7 +83,7 @@ if [ `uname -s` = 'Darwin' ]; then
   export WORKON_HOME=$HOME/.virtualenvs
   # Mac specific paths
   PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/dev/flutter/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
-  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle)
+  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle virtualenvwrapper)
   alias ls='ls -sCFG --color=auto'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'
   alias postgres_stop='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper stop'
@@ -97,6 +97,7 @@ else
 fi
 
 export PATH
+export BAT_STYLE="plain"
 
 [[ -s "$HOME/.homesick/repos/homeshick/homeshick.sh" ]] && source "$HOME/.homesick/repos/homeshick/homeshick.sh"
 [[ -s $HOME/.homesick/repos/homeshick/completions ]] && fpath=($HOME/.homesick/repos/homeshick/completions $fpath)

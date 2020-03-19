@@ -82,7 +82,7 @@ if [ `uname -s` = 'Darwin' ]; then
   source /opt/local/bin/virtualenvwrapper.sh-3.7
   export WORKON_HOME=$HOME/.virtualenvs
   # Mac specific paths
-  PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/dev/flutter/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
+  PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Python/3.7/bin:/Users/cdh/dev/flutter/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
   plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle virtualenvwrapper)
   alias ls='ls -sCFG --color=auto'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'

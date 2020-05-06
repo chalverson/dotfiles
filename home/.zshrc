@@ -83,7 +83,7 @@ if [ `uname -s` = 'Darwin' ]; then
   export WORKON_HOME=$HOME/.virtualenvs
   # Mac specific paths
   PATH=/opt/local/bin:/opt/local/libexec/gnubin:/opt/local/lib/postgresql${POSTGRES_VERSION}/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:/Users/cdh/Library/Python/3.7/bin:/Users/cdh/dev/flutter/bin:/Users/cdh/Library/Android/sdk/build-tools/23.0.2:$PATH
-  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle virtualenvwrapper)
+  plugins=(git git-flow nmap mvn osx vagrant macports tmux python gradle rsync httpie docker golang gradle virtualenvwrapper zsh-nvm)
   alias ls='ls -sCFG --color=auto'
   alias postgres_start='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper start'
   alias postgres_stop='sudo /opt/local/etc/LaunchDaemons/org.macports.postgresql${POSTGRES_VERSION}-server/postgresql${POSTGRES_VERSION}-server.wrapper stop'
@@ -121,4 +121,4 @@ cpv() {
 }
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" && -z $(which sdkman-init.sh | grep '/sdkman-init.sh') ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
+[[ -s "${HOME}/.sdkman/bin/sdkman-init.sh" ]] && source "${HOME}/.sdkman/bin/sdkman-init.sh"
